@@ -82,16 +82,6 @@ public class ReviewService {
 
 
 
-    public boolean deleteBadComment(String userID, String productID, String comment){
-        for (User user : userService.getUsers()) {
-            if(user.getId().equals(userID)&& user.getRole().equalsIgnoreCase("Admin")){
-                for (Product product : productService.getProducts()) {
-                    if(product.getId().equals(productID)){
-                        for (Review review : reviews) {
-                            if(review.getComment().contains(comment)){
-                                reviews.remove(review);
-                                return true;}}}}}}
-                                     return false;}
 
 }
 

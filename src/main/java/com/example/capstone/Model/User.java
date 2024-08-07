@@ -29,5 +29,8 @@ public class User {
     @NotNull(message="Balance must not be empty")
     @Positive(message="Balance should be a positive number")
     private double balance;
+   @NotEmpty(message="comment must not be empty")
+  private String comment;
+
 
 }

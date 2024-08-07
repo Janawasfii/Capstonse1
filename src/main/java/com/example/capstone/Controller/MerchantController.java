@@ -50,5 +50,13 @@ public class MerchantController {
            return ResponseEntity.status(400).body(new APIResponse("Merchant not found"));}
 
 
+    @PutMapping("/set/{orderID}/{userID}/{productID}/{merchantID}")
+    public ResponseEntity changeStatus(@PathVariable String orderID,@PathVariable String userID, @PathVariable String productID, @PathVariable String merchantID) {
+        boolean isUpdated = merchantService.changeStatus(orderID,userID,productID,merchantID);
+        if (isUpdated) {
+            return ResponseEntity.status(200).body(new APIResponse("Successfully updated"));
+        }
+        return ResponseEntity.status(400).body(new APIResponse("Not found"));
+    }
 
 }

@@ -44,6 +44,14 @@ public class UserController {
         }
         return ResponseEntity.status(400).body(new APIResponse("User not found"));
     }
+    @DeleteMapping("/delete/{userID}/{productID}/{comment}")
+    public ResponseEntity deleteBadComment(@PathVariable String userID, @PathVariable String productID, @PathVariable String comment) {
+        boolean isDeleted = userService.deleteBadComment(userID, productID, comment);
+        if (isDeleted) {
+            return ResponseEntity.status(200).body(new APIResponse("Successfully deleted comment"));
+        }
+        return ResponseEntity.status(400).body(new APIResponse("Review not found"));
+    }
 
 
 

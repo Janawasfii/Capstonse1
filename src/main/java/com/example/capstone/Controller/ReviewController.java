@@ -13,10 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
-import static jdk.javadoc.doclet.DocletEnvironment.ModuleMode.API;
 
 @RestController
 @RequestMapping("/api/v1/review")
@@ -75,15 +72,6 @@ public class ReviewController {
         return ResponseEntity.status(200).body(reviewService.findComment(productID,comment));}
 
 
-
-    public ResponseEntity deleteBadComment(@PathVariable String userID, @PathVariable String productID, @PathVariable String comment) {
-        boolean isDeleted = reviewService.deleteBadComment(userID, productID, comment);
-        if (isDeleted) {
-            return ResponseEntity.status(200).body(new APIResponse("Successfully deleted comment"));
-
-        }
-        return ResponseEntity.status(400).body(new APIResponse("Review not found"));
-    }
 
 }
 
