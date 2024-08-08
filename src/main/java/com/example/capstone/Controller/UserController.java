@@ -44,6 +44,20 @@ public class UserController {
         }
         return ResponseEntity.status(400).body(new APIResponse("User not found"));
     }
+    @PutMapping("/set/{UserID}/{ProductID}/{MerchantID}/{MerchantStockID}")
+    public ResponseEntity buyProduct(@PathVariable String UserID,@PathVariable String ProductID,@PathVariable String MerchantID) {
+        int isSet = userService.buyProduct(UserID,ProductID,MerchantID);
+        if (isSet==1) {
+            return ResponseEntity.status(400).body(new APIResponse("Out of stock"));
+        }if(isSet==3){
+            return ResponseEntity.status(400).body(new APIResponse("Balance is less than the product price"));
+        }   if(isSet == 4){
+            return ResponseEntity.status(400).body(new APIResponse("Not found"));}
+
+        return ResponseEntity.status(200).body(new APIResponse("Successfully set"));
+    }
+
+
     @DeleteMapping("/delete/{userID}/{productID}/{comment}")
     public ResponseEntity deleteBadComment(@PathVariable String userID, @PathVariable String productID, @PathVariable String comment) {
         boolean isDeleted = userService.deleteBadComment(userID, productID, comment);

@@ -1,5 +1,6 @@
 package com.example.capstone.Service;
 
+import com.example.capstone.Model.MerchantStock;
 import com.example.capstone.Model.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,8 @@ import java.util.ArrayList;
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-
+    private final MerchantStockService stockService;
+    private final UserService userService;
     ArrayList<Product> products = new ArrayList<Product>();
 
     public ArrayList<Product> getProducts() {
@@ -39,6 +41,7 @@ public class ProductService {
         }
         return false;
     }
+
 
 }
 

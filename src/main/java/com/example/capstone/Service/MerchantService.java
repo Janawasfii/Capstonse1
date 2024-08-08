@@ -2,6 +2,8 @@ package com.example.capstone.Service;
 
 import com.example.capstone.Model.Merchant;
 
+import com.example.capstone.Model.Product;
+import com.example.capstone.Model.User;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -44,22 +46,22 @@ public class MerchantService {
 
 
     public boolean changeStatus(String OrderID,String userID,String ProductID,String MerchantID){
-        for (int i = 0; i < merchants.size(); i++) {
-            if(merchants.get(i).getId().equals(OrderID)){
-                for(int j=0;j<merchants.size();j++){
-                    if(userService.users.get(i).getId().equals(userID)){
-                        for(int k=0;k<merchants.size();k++){
-                            if(productService.products.get(k).getId().equals(ProductID)){
-                                for(int l=0;l<merchants.size();l++){
-                                    if(merchants.get(l).getId().equals(MerchantID)){
-                                        if(merchants.get(k).getStatus().equals("PLACED")){
-                                            merchants.get(j).setStatus("PROCESSING");}
-                                        else if(merchants.get(k).getStatus().equals("PROCESSING")){
-                                            merchants.get(j).setStatus("SHIPPED");}
-                                        else if(merchants.get(k).getStatus().equals("SHIPPED")){
-                                            merchants.get(j).setStatus("DELIVERED");}
-                                        return true;}}}}}}}}
-        return false;}
+        for (Merchant merchant : merchants) {
+            if(merchant.getId().equals(OrderID) && merchant.getId().equals(MerchantID)){
+                for( User u: userService.getUsers()) {
+                    if(u.getId().equals(userID)) {
+                        for( Product p: productService.getProducts()) {
+                            if(p.getId().equals(ProductID)) {
+                                        if(merchant.getStatus().equals("PLACED")){
+                                            merchant.setStatus("PROCESSING");}
+                                        else if(merchant.getStatus().equals("PROCESSING")){
+                                            merchant.setStatus("SHIPPED");}
+                                        else if(merchant.getStatus().equals("SHIPPED")){
+                                            merchant.setStatus("DELIVERED");}
+                                        return true;}}}}}}
+        return false;
+    }
+        }
 
 
 
@@ -73,7 +75,7 @@ public class MerchantService {
 
 
 
-}
+
 
 
 

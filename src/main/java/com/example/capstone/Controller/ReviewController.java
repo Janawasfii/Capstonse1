@@ -27,12 +27,12 @@ public class ReviewController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity addReview(@Valid @RequestBody Review review, Errors errors) {
+    public ResponseEntity addReview(@PathVariable String userID, @PathVariable String productId,@Valid @RequestBody Review review, Errors errors) {
         if (errors.hasErrors()) {
             String message = errors.getFieldError().getDefaultMessage();
             return ResponseEntity.status(400).body(message);
         }
-        reviewService.addReview(review);
+        reviewService.addReview(userID,productId,review);
         return ResponseEntity.status(200).body(new APIResponse("Successfully added review"));
     }
 

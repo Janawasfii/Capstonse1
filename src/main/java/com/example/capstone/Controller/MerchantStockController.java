@@ -54,18 +54,18 @@ public class MerchantStockController {
     }
 
 
-    @PutMapping("/set/{UserID}/{ProductID}/{MerchantID}/{MerchantStockID}")
-    public ResponseEntity buyProduct(@PathVariable String UserID,@PathVariable String ProductID,@PathVariable String MerchantID,@PathVariable String MerchantStockID) {
-        int isSet = merchantStockService.buyProduct(UserID,ProductID,MerchantID,MerchantStockID);
-        if (isSet==1) {
-            return ResponseEntity.status(400).body(new APIResponse("Out of stock"));
-        }if(isSet==3){
-            return ResponseEntity.status(400).body(new APIResponse("Balance is less than the product price"));
-        }   if(isSet == 4){
-            return ResponseEntity.status(400).body(new APIResponse("Not found"));}
-
-        return ResponseEntity.status(200).body(new APIResponse("Successfully set"));
-    }
+//    @PutMapping("/set/{UserID}/{ProductID}/{MerchantID}/{MerchantStockID}")
+//    public ResponseEntity buyProduct(@PathVariable String UserID,@PathVariable String ProductID,@PathVariable String MerchantID) {
+//        int isSet = merchantStockService.buyProduct(UserID,ProductID,MerchantID);
+//        if (isSet==1) {
+//            return ResponseEntity.status(400).body(new APIResponse("Out of stock"));
+//        }if(isSet==3){
+//            return ResponseEntity.status(400).body(new APIResponse("Balance is less than the product price"));
+//        }   if(isSet == 4){
+//            return ResponseEntity.status(400).body(new APIResponse("Not found"));}
+//
+//        return ResponseEntity.status(200).body(new APIResponse("Successfully set"));
+//    }
 
 
     @PutMapping("/discount/{UserAdminID}/{ProductID}")

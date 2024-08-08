@@ -50,23 +50,7 @@ public class MerchantStockService {
                     return true;
                 }}}}} }}return false;}
 
-    public int buyProduct(String UserID,String ProductID,String MerchantID,String MerchantStockID){
-        for(Product p: productService.getProducts()){
-            if(p.getId().equals(ProductID)){
-                for( User u: userService.getUsers()){
-                    if(u.getId().equals(UserID)){
-                        for(Merchant m: merchantService.getMerchants()){
-                            if(m.getId().equals(MerchantID)){
-                                for (MerchantStock ms : merchantStocks){
-                                    if(ms.getId().equals(MerchantStockID)){
-                                        if(ms.getStock()>0){
-                                            ms.setStock(ms.getStock()-1);}
-                                        else{ return 1;}
-                                        if(u.getBalance() >= p.getProductPrice()){
-                                            u.setBalance(u.getBalance()-p.getProductPrice());
-                                            return 2;
-                                        }else {return 3;}
-                                    }}}}}}}}return 4;}
+
 
     public boolean discount(String UserAdminID,  String ProductID){
         for (int i = 0; i < userService.users.size(); i++) {

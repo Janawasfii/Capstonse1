@@ -1,5 +1,6 @@
 package com.example.capstone.Service;
 
+import com.example.capstone.Model.MerchantStock;
 import com.example.capstone.Model.Product;
 import com.example.capstone.Model.Review;
 import com.example.capstone.Model.User;
@@ -16,7 +17,8 @@ import java.util.List;
 
 public class ReviewService {
     private final ProductService productService;
-    private final UserService userService;
+    private final MerchantService merchantService;
+    private final MerchantStockService merchantStockService;
 
     ArrayList<Review> reviews = new ArrayList<>();
 
@@ -24,9 +26,17 @@ public class ReviewService {
         return reviews;
     }
 
-    public void addReview(Review review) {
-        reviews.add(review);
-    }
+//    public void addReview(String userId, String productId,Review review) {
+//        for (int i = 0; i < reviews.size(); i++) {
+//            if (reviews.get(i).getUserID()==userId) {
+//                if (reviews.get(i).getProductId()==productId){
+//                   for(MerchantStock merchantStock : merchantStockService.getMerchantStocks())
+//                       if()
+//                    reviews.add(i,review);
+//                }
+//            }
+//        }
+//    }
 
     public boolean updateReview(String reviewID, Review review) {
         for (int i = 0; i < reviews.size(); i++) {
